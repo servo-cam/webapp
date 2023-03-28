@@ -1,0 +1,425 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>servocam.org (web-app)</title>
+	<link href="data:image/x-icon;base64,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" rel="icon" type="image/x-icon" />
+	
+	<link rel="stylesheet" href="./vendor/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> -->
+
+	<!--MINIFIED VERSION-->
+	<link rel="stylesheet" href="./css/style.min.css">
+	<!--SOURCE VERSION-->
+	<!--<link rel="stylesheet" href="./css/style.css">-->
+
+	<link href="./vendor/video-js.css" rel="stylesheet">
+  	<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.0.0/video-js.css" rel="stylesheet"> -->
+
+  <script src="./vendor/video.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/7.0.0/video.min.js"></script> -->
+  <script src="./vendor/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> -->
+</head>
+
+<body>	
+	<span id="alert_on_target" data-id="target-locked" class="alert-monit">ON TARGET</span>
+	<span id="alert_target_searching" data-id="target-searching" class="alert-monit">SEARCHING...</span>
+	<span id="alert_target_lost" data-id="target-lost" class="alert-monit">TARGET LOST</span>
+	<span id="alert_action" data-id="target-action" class="alert-monit">ACTION</span>	
+
+	<div class="pt-2 text-center" id="status"></div>
+
+	<div id="wrapper" class="container-fluid">
+	  <canvas id="canvas" class="canvas-resize"></canvas>
+	  <canvas id="canvas_source" class="canvas-resize d-none"></canvas>
+	  <video id="video" class="video-js vjs-fluid vjs-default-skin" preload="metadata" muted controls crossorigin='anonymous'>
+	  	<source src="">
+	  </video>	  
+	  <img id="remote" class="d-none" src="http://localhost:9999/video" crossorigin="anonymous">
+	  <div id="debug_main"></div>
+	  <div id="debug_servo"></div>
+	  <div id="debug_custom"></div>
+	  <div id="debug_console">	  	
+	  	<div class="items">
+	  		<ul></ul>
+	  	</div>
+	  	<div class="send text-right">
+	  		<div class="form-row">
+				  	<div class="col-6 text-right" style="margin-top: 5px;">
+				  		<div class="input-group">					        
+				     	<input class="form-control" id="console_input" type="text" value="">
+				     	</div>
+				     </div>	
+				     <div class="col-auto">
+				      	<button data-trigger="btn-console-send" class="btn btn-sm btn-primary">SEND</button>
+				      	<button data-trigger="btn-console-pause" class="btn btn-sm btn-secondary">PAUSE</button>
+	  						<button data-trigger="btn-console-clear" class="btn btn-sm btn-danger">CLEAR</button>	
+	  						<button data-trigger="btn-console-toggle" class="btn btn-sm btn-secondary">CLOSE</button>
+				     </div>	
+				</div>	  		  		
+	  	</div>
+	  </div>
+	  <div id="debug_pointer"></div>
+	  <div id="info_target_counter"></div>
+	  <div id="targets_list" class="mobile-hidden"></div>
+	</div>
+	<div id="view_3d"></div>
+
+	<div id="panel_target_switch" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-switch-target" data-id="PREV" class="btn btn-sm btn-secondary">&lt; TARGET (Q)</button>
+			<button data-trigger="btn-switch-target" data-id="NEXT" class="btn btn-sm btn-secondary">TARGET &gt; (W)</button>
+		</span>
+	</div>
+
+	<div id="panel_mode_select" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-servo" class="btn btn-sm btn-secondary" title="CONNECT TO SERVO (via USB)">SERVO ON/OFF(S)</button>
+			<button data-trigger="btn-control-mode-select" data-id="OFF" class="btn btn-sm btn-secondary">OFF</button>
+			<button data-trigger="btn-control-mode-select" data-id="IDLE" class="btn btn-sm btn-secondary">IDLE (P)</button>
+			<button data-trigger="btn-control-mode-select" data-id="FOLLOW" class="btn btn-sm btn-secondary">FOLLOW (F)</button>
+			<button data-trigger="btn-control-mode-select" data-id="PATROL" class="btn btn-sm btn-secondary">PATROL (R)</button>		
+			<button data-trigger="btn-control-mode-select" data-id="MANUAL" class="btn btn-sm btn-secondary">MANUAL (N)</button>
+			<button data-trigger="btn-control-mode-select" data-id="MOUSE" class="btn btn-sm btn-secondary">MOUSE (M)</button>
+		</span>		
+		<span class="mobile-row">
+			<span class="pl-4">
+						<button data-trigger="btn-attack-toggle" class="btn btn-sm btn-secondary">ACTION ON/OFF (A)</button>
+						<button data-trigger="btn-target-lock" class="btn btn-sm btn-secondary">LOCK/UNLOCK (L)</button> 		
+						<button data-trigger="btn-target-single-only" class="btn btn-sm btn-secondary">SINGLE (Z)</button> 
+						<select data-trigger="auto_action_name" name="auto_action_name" id="auto_action_name" class="form-control">
+							<option value="A1">A1</option>
+							<option value="A2">A2</option>
+							<option value="A3">A3</option>
+							<option value="B4">B4</option>
+							<option value="B5">B5</option>
+							<option value="B6">B6</option>
+						</select>
+						<select data-trigger="auto_action_mode" name="auto_action_mode" id="auto_action_mode" class="form-control">
+							<option value="SINGLE">SINGLE</option>
+							<option value="CONTINUOUS">CONTINUOUS</option>
+							<option value="SERIES">SERIES</option>
+							<option value="TOGGLE">TOGGLE</option>
+						</select>	
+			</span>
+		</span>		
+	</div>
+
+	<div id="panel_mode_manual" class="control-panel">
+		<span class="mobile-row">
+				<button data-trigger="btn-control-manual-mode" data-id="POINT" class="btn btn-sm btn-secondary">POINT</button>
+				<button data-trigger="btn-control-manual-mode" data-id="NOW" class="btn btn-sm btn-secondary">NOW</button> 		
+				<button data-trigger="btn-control-manual-mode" data-id="TARGET" class="btn btn-sm btn-secondary">TARGET</button>				
+				<button data-trigger="btn-action-switch" class="btn btn-sm btn-secondary">ACTION TOGGLE (O)</button>
+				<button data-trigger="btn-action" data-id="A1" class="btn btn-sm btn-secondary">A1</button>
+				<button data-trigger="btn-action" data-id="A2" class="btn btn-sm btn-secondary">A2</button> 
+				<button data-trigger="btn-action" data-id="A3" class="btn btn-sm btn-secondary">A3</button> 
+				<button data-trigger="btn-action" data-id="B4" class="btn btn-sm btn-secondary">B4</button> 
+				<button data-trigger="btn-action" data-id="B5" class="btn btn-sm btn-secondary">B5</button> 
+				<button data-trigger="btn-action" data-id="B6" class="btn btn-sm btn-secondary">B6</button> 
+		</span>
+	</div>
+	
+	<div id="panel_target_point" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-target-point-select" data-id="AUTO" class="btn btn-sm btn-secondary">AUTO (1)</button>
+			<button data-trigger="btn-target-point-select" data-id="HEAD" class="btn btn-sm btn-secondary">HEAD (2)</button>
+			<button data-trigger="btn-target-point-select" data-id="NECK" class="btn btn-sm btn-secondary">NECK (3)</button>
+			<button data-trigger="btn-target-point-select" data-id="BODY" class="btn btn-sm btn-secondary">BODY (4)</button>
+			<button data-trigger="btn-target-point-select" data-id="LEGS" class="btn btn-sm btn-secondary">LEGS (5)</button>
+		</span>
+	</div>
+
+	<div id="panel_area_type" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-area-select" class="btn btn-sm btn-secondary">SELECT AREA</button>
+		</span>
+	</div>
+
+	<div id="panel_area_config" data-id="area" class="control-panel">
+		<span class="mobile-row">
+			<div class="config-values" data-id="TARGET">
+				<div class="row">
+					<div class="col-md-2 col-12 pt-1">
+						<span style="color:lime">TARGET</span>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="TARGET" data-id="xMin" type="text" title="X coord [0-1]" placeholder="x [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="TARGET" data-id="yMin" type="text" title="Y coord [0-1]" placeholder="y [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="TARGET" data-id="width" type="text" title="Width [0-1]" placeholder="w [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="TARGET" data-id="height" type="text" title="Height [0-1]" placeholder="h [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<select data-role="area_config_value" data-parent="TARGET" data-id="mode" class="form-control"/>
+							<option value="OFF">OFF</option>							
+							<option value="CAM">CAM</option>
+							<option value="WORLD">WORLD</option>
+						</select>
+					</div>					
+				</div>				
+			</div>
+			<div class="config-values" data-id="PATROL">
+				<div class="row">
+					<div class="col-md-2 col-12 pt-1">
+						<span style="color:orange">PATROL</span>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="PATROL" data-id="xMin" type="text" title="X coord [0-1]" placeholder="x [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="PATROL" data-id="yMin" type="text" title="Y coord [0-1]" placeholder="y [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="PATROL" data-id="width" type="text" title="Width [0-1]" placeholder="w [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="PATROL" data-id="height" type="text" title="Height [0-1]" placeholder="h [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<select data-role="area_config_value" data-parent="PATROL" data-id="mode" class="form-control"/>
+							<option value="OFF">OFF</option>							
+							<option value="CAM">CAM</option>
+							<option value="WORLD">WORLD</option>
+						</select>
+					</div>					
+				</div>				
+			</div>
+			<div class="config-values" data-id="ACTION">
+				<div class="row">
+					<div class="col-md-2 col-12 pt-1">
+						<span style="color:red">ACTION</span>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="ACTION" data-id="xMin" type="text" title="X coord [0-1]" placeholder="x [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="ACTION" data-id="yMin" type="text" title="Y coord" placeholder="y [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="ACTION" data-id="width" type="text" title="Width" placeholder="w [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<input data-role="area_config_value" data-parent="ACTION" data-id="height" type="text" title="Height [0-1]" placeholder="h [0-1]" class="form-control"/>
+					</div>
+					<div class="col-md-2 col">
+						<select data-role="area_config_value" data-parent="ACTION" data-id="mode" title="Mode" class="form-control"/>
+							<option value="OFF">OFF</option>							
+							<option value="CAM">CAM</option>
+							<option value="WORLD">WORLD</option>
+						</select>
+					</div>					
+				</div>				
+			</div>
+		</span>
+	</div>	
+
+	<div id="panel_common" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-show-bounds" class="btn btn-sm btn-secondary" title="SHOW BOUNDS">BOUNDS (B)</button>
+			<button data-trigger="btn-center" class="btn btn-sm btn-secondary" title="GO TO CENTER POINT">CENTER (C)</button> <button data-trigger="btn-center-lock" class="btn btn-sm btn-secondary" title="CENTER POINT LOCK">LOCK CENTER (V)</button>			
+			<span class="mobile-row">
+				<button data-trigger="btn-servo-simulator" class="btn btn-sm btn-secondary" title="SERVO/CAMERA SIMULATOR ON/OFF">SIMULATE (I)</button>
+				<button data-trigger="btn-usb-connect" class="btn btn-sm btn-secondary" id="btn_usb" title="Connect to USB port...">USB (U)</button>
+				<button data-trigger="btn-servo-horizontal" class="btn btn-sm btn-secondary">SERVO X (X)</button>
+				<button data-trigger="btn-servo-vertical" class="btn btn-sm btn-secondary">SERVO Y (Y)</button>
+			</span>
+		</span>
+	</div>
+
+	<div id="panel_video" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-play-control" data-id="" class="btn btn-sm btn-secondary">PLAY/PAUSE</button>
+			<button data-trigger="btn-play-controls" data-id="" class="btn btn-sm btn-secondary">CTRLS</button>
+		</span>
+	</div>
+
+	<div id="panel_view" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-view-resize" data-id="RESIZED" class="btn btn-sm btn-secondary" title="VIEW: RESIZED">RESIZED</button>
+			<button data-trigger="btn-view-resize" data-id="ORIGINAL" class="btn btn-sm btn-secondary" title="VIEW: ORIGINAL">ORIGINAL</button>
+			<button data-trigger="btn-view-resize" data-id="DISABLED" class="btn btn-sm btn-secondary" title="VIEW: DISABLED">DISABLED</button>
+		</span>
+	</div>	
+
+	<div id="panel_manual">
+		<div class="controller">
+			<button data-trigger="btn-control-manual-control" data-id="UP" class="btn btn-sm btn-secondary control-trigger control-up">U</button>
+			<button data-trigger="btn-control-manual-control" data-id="LEFT" class="btn btn-sm btn-secondary control-trigger control-left">L</button>
+			<button data-trigger="btn-control-manual-control" data-id="RIGHT" class="btn btn-sm btn-secondary control-trigger control-right">R</button>
+			<button data-trigger="btn-control-manual-control" data-id="DOWN" class="btn btn-sm btn-secondary control-trigger control-down">D</button>
+			<button data-trigger="btn-control-manual-control" data-id="CENTER" class="btn btn-sm btn-secondary control-trigger control-center">C</button>
+			<button data-trigger="btn-control-manual-control" data-id="SPEED_UP" class="btn btn-sm btn-secondary control-trigger control-speed-up">+</button>
+			<button data-trigger="btn-control-manual-control" data-id="SPEED_DOWN" class="btn btn-sm btn-secondary control-trigger control-speed-down">-</button>
+			<span class="control-speed-value"></span>
+		</div>
+	</div>
+
+	<div id="panel_config" class="control-panel">
+		<span class="mobile-row">
+			<button data-trigger="btn-config-save" class="btn btn-sm btn-secondary" title="SAVE CONFIG">SAVE CONFIG</button>
+			<button data-trigger="btn-config-reset" class="btn btn-sm btn-secondary" title="RESET CONFIG">RESET CONFIG</button>
+		</span>
+	</div>
+
+	<div id="controls" class="control-panel">
+		<form method="GET">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col text-left">
+
+						<span class="mobile-row">
+							<button type="button" id="source-camera" class="source-select btn btn-sm btn-primary" data-source="CAMERA" >CAM</button>  
+							<button type="button" id="source-video" class="source-select btn btn-sm btn-primary" data-source="VIDEO" >VIDEO</button>  
+							<button type="button" id="source-stream" class="source-select btn btn-sm btn-primary" data-source="STREAM">STREAM (IPTV / m3u8)</button>
+							<button type="button" id="source-remote" class="source-select btn btn-sm btn-primary" data-source="REMOTE">REMOTE CONTROL</button>
+							<button data-trigger="btn-ai-toggle" type="button" class="btn btn-sm btn-secondary">AI TRACKING</button>
+							<button data-trigger="btn-video-toggle" type="button" class="btn btn-sm btn-secondary">VIDEO</button>			
+							<!-- <button data-trigger="btn-3d-toggle" ype="button" class="btn btn-sm btn-secondary">3D VIEW</button>-->
+							<button data-trigger="btn-debug-toggle" type="button" class="btn btn-sm btn-secondary">DEBUG (D)</button>
+							<button data-trigger="btn-console-toggle" type="button" class="btn btn-sm btn-secondary">CONSOLE (E)</button>
+						</span>
+
+						<span class="mobile-row">
+							<select name="model" id="model_select" class="form-control d-inline">
+								<!-- 
+									<option value="MoveNetSinglePoseLightning">2D only (FAST) singlepose (faster) / MoveNet </option>
+									<option value="MoveNetSinglePoseThunder">2D only (FAST) singlepose (slower) / MoveNet </option>
+									<option value="MoveNetMultiPoseLightning">2D only (FAST) multipose / MoveNet</option>
+									<option value="PoseNetMobileNetV1">2D only (SLOW) singlepose (faster) / PoseNet-MobileNetV1 </option>
+									<option value="PoseNetResNet50">2D only (SLOW) singlepose (slower) / PoseNet-ResNet50</option>
+									<option value="BlazePoseLite">2D + 3D singlepose (faster) / BlazePose</option>
+									<option value="BlazePoseHeavy">2D + 3D singlepose (slower) / BlazePose</option>
+									<option value="BlazePoseFull">2D + 3D singlepose (optimal) / BlazePose</option>
+									<option value="mobilenet">Mobilenet - classification</option>
+								-->
+								<option value="-">---</option>
+								<option value="MoveNetSinglePoseLightning">SINGLE POSE / MoveNet / FAST </option>
+								<option value="MoveNetSinglePoseThunder">SINGLE POSE / MoveNet / BEST</option>
+								<option value="MoveNetMultiPoseLightning">MULTI POSE / MoveNet / FAST</option>
+								<option value="MobileNet">CLASSIFICATION / MobileNet Coco SSD</option>
+								<option value="OpenCVMotionDetector">MOTION DETECT / OpenCV</option>
+							</select>		
+						</span>
+
+						<span class="mobile-row">
+							<select name="camera-select" id="camera_select" class="form-control">
+								<option>--SELECT CAMERA--</option>
+							</select>		
+						</span>		
+					</div>
+				</div>
+			</div>
+		</form>	
+
+	<span class="mobile-row">
+			<div id="video_area" class="text-center">
+				<div class="container-fluid">
+					<form class="form-horizontal" onsubmit="return false;">
+						<div class="form-row">
+						  	<div class="col-lg-10 text-right">
+						  		<div class="input-group mb-2">
+							        <div class="input-group-prepend mobile-hidden">
+							          <div class="input-group-text">
+							          	<span id="video_src_prefix"></span>
+							          </div>
+							      	</div>
+						     	<input class="form-control" id="video_src" type="text" value="">
+						     	</div>
+						     </div>	
+						     <div class="col-auto">
+						      	<button data-trigger="btn-load-video" class="btn btn-primary mt-0">LOAD</button>
+						     </div>	
+						</div>
+					</form>	
+				</div>
+			</div>
+		</span>
+	</div>
+
+	<button data-trigger="btn-controls-toggle" id="btn_panel_toggle" class="btn btn-primary"><span class="mobile-hidden">SHOW/HIDE </span>CONTROLS</button>
+
+	<div id="device_status"></div>
+
+	<div class="footer"><b>Servocam.org</b> v.<span id="version"></span> | <a href="https://github.com/servo-cam" target="_blank">GitHUB</a></div>
+
+	<!-- Load Tensor Flow -->
+	<script src="./vendor/tf.min.js" type="text/javascript"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs/dist/tf.min.js" type="text/javascript"></script> -->
+
+	<script src="./vendor/pose-detection.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script> -->
+
+	<script src="./vendor/coco-ssd.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script> -->
+
+	<!-- Load three.js -->
+	<script src="./vendor/three.min.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script> -->
+	<!-- Load scatter-gl.js -->
+	<script src="./vendor/scatter-gl.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/scatter-gl@0.0.13/lib/scatter-gl.min.js"></script> -->
+
+	<script src="./vendor/opencv.js" ></script>
+
+	<!-- Load app-->	
+	<script src="./config.js"></script>
+
+
+	<!--MINIFIED VERSION-->
+	<script src="./js/tracker.min.js"></script>	
+	<!--SOURCE VERSION-->
+	<!--
+	<script src="./js/app.js"></script>
+	<script src="./js/tracker.js"></script>
+	<script src="./js/tracker.action.js"></script>
+	<script src="./js/tracker.area.js"></script>
+	<script src="./js/tracker.command.js"></script>
+	<script src="./js/tracker.console.js"></script>
+	<script src="./js/tracker.debug.js"></script>
+	<script src="./js/tracker.filters.js"></script>
+	<script src="./js/tracker.finder.js"></script>
+	<script src="./js/tracker.keypoints.js"></script>
+	<script src="./js/tracker.manual.js"></script>
+	<script src="./js/tracker.matcher.js"></script>
+	<script src="./js/tracker.patrol.js"></script>
+	<script src="./js/tracker.render.js"></script>
+	<script src="./js/tracker.serial.js"></script>
+	<script src="./js/tracker.servo.js"></script>
+	<script src="./js/tracker.sorter.js"></script>
+	<script src="./js/tracker.shortcuts.js"></script>
+	<script src="./js/tracker.source.camera.js"></script>
+	<script src="./js/tracker.source.remote.js"></script>
+	<script src="./js/tracker.source.stream.js"></script>
+	<script src="./js/tracker.source.video.js"></script>
+	<script src="./js/tracker.storage.js"></script>
+	<script src="./js/tracker.targeting.js"></script>	
+	<script src="./js/tracker.targets.js"></script>
+	<script src="./js/tracker.target.js"></script>
+	<script src="./js/tracker.ui.js"></script>
+	<script src="./js/tracker.upscaler.js"></script>
+	<script src="./js/tracker.wrapper.mobilenet.js"></script>	
+	<script src="./js/tracker.wrapper.motion_detector.js"></script>
+	<script src="./js/tracker.wrapper.movenet.js"></script>
+	-->
+	
+	<script>
+		app.init(); // initialize app
+	</script>	
+
+	<script>
+		// load version info
+		$(document).ready(function() {
+			$('#version').text(app.version);
+			document.title = document.title + ' v.' + app.version;
+		});
+	</script>
+</body>
+</html>
