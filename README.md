@@ -12,6 +12,26 @@ GitHub: https://github.com/servo-cam
 
 Release: **0.9.2** | 2023.03.27
 
+
+**Usage:**
+
+
+1) Create a virtual environment and install dependencies:
+
+```
+python3 -m venv ./venv
+source ./venv/bin/activate
+pip install -r requirements.txt
+```
+
+2) Start the webserver (Flask):
+
+```python3 start.py```
+
+3) Open web-browser and go to address:
+
+```http://localhost:8000```
+
 ------
 (c) 2023, servocam.org
 

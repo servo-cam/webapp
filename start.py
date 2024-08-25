@@ -32,7 +32,7 @@ if __name__ == '__main__':
     port = 8000
     ap = argparse.ArgumentParser()
     ap.add_argument("-p", "--port", required=False,
-                    help="port (8888 is default")
+                    help="port (8000 is default")
 
     args = vars(ap.parse_args())
     if "port" in args and args['port'] is not None:
